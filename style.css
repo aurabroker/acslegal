@@ -480,10 +480,6 @@ input, select, textarea, button { font-family: inherit; }
   background: var(--white);
 }
 .service-card:hover::after { transform: scaleX(1); }
-.service-icon {
-  font-size: 2.2rem;
-  line-height: 1;
-}
 .service-card h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.35rem;
@@ -551,7 +547,6 @@ input, select, textarea, button { font-family: inherit; }
   border-color: rgba(201,168,76,0.4);
   transform: translateY(-4px);
 }
-.business-icon { font-size: 2rem; }
 .business-card h3 {
   font-family: 'Playfair Display', serif;
   font-size: 1.15rem;
@@ -1474,6 +1469,119 @@ input, select, textarea, button { font-family: inherit; }
   cursor: pointer;
   white-space: nowrap;
 }
+
+/* ==================== SVG ICONS ==================== */
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.06));
+  border-radius: 14px;
+  border: 1px solid rgba(201,168,76,0.2);
+  transition: background 0.3s, border-color 0.3s;
+}
+.service-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gold);
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), stroke 0.3s;
+}
+.service-card:hover .service-icon {
+  background: linear-gradient(135deg, rgba(201,168,76,0.22), rgba(201,168,76,0.1));
+  border-color: rgba(201,168,76,0.5);
+}
+.business-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.07);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: background 0.3s, border-color 0.3s;
+}
+.business-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: rgba(255,255,255,0.7);
+  transition: stroke 0.3s;
+}
+.business-card:hover .business-icon {
+  background: rgba(201,168,76,0.15);
+  border-color: rgba(201,168,76,0.4);
+}
+.business-card:hover .business-icon svg { stroke: var(--gold); }
+
+/* Kołysanie wagi */
+.si-sway svg, .bi-sway svg { transform-origin: center bottom; }
+.service-card:hover .si-sway svg,
+.business-card:hover .bi-sway svg { animation: sway 0.7s ease forwards; }
+@keyframes sway {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(10deg); }
+  75%  { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Puls EKG */
+.service-card:hover .si-pulse svg,
+.business-card:hover .bi-pulse svg { animation: pulse-anim 0.6s ease; }
+@keyframes pulse-anim {
+  0%   { transform: scaleX(1); }
+  30%  { transform: scaleX(1.12); }
+  60%  { transform: scaleX(0.94); }
+  100% { transform: scaleX(1); }
+}
+
+/* Obrót 360 */
+.service-card:hover .si-spin svg,
+.business-card:hover .bi-spin svg { transform: rotate(360deg); }
+.si-spin svg, .bi-spin svg { transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* Bounce w górę */
+.si-bounce svg, .bi-bounce svg { transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+.service-card:hover .si-bounce svg,
+.business-card:hover .bi-bounce svg { transform: translateY(-5px) scale(1.08); }
+
+/* Draw — linie dokumentu */
+.si-draw-line {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  transition: stroke-dashoffset 0.5s ease;
+}
+.service-card:hover .si-draw-line { stroke-dashoffset: 0; }
+
+/* Tarcza + checkmark */
+.si-check {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  transition: stroke-dashoffset 0.45s ease 0.1s;
+}
+.si-shield svg { transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+.service-card:hover .si-shield svg { transform: scale(1.12); }
+.service-card:hover .si-check { stroke-dashoffset: 0; }
+
+/* Tarcza firma */
+.bi-shield svg { transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+.business-card:hover .bi-shield svg { transform: scale(1.15) translateY(-2px); }
+
+/* Serce pop */
+.bi-shake svg { transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+.business-card:hover .bi-shake svg { animation: heart-pop 0.5s ease; }
+@keyframes heart-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.22); }
+  70%  { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+/* Slide prawo */
+.bi-slide svg { transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.business-card:hover .bi-slide svg { transform: translateX(4px); }
 
 /* ==================== ANIMATIONS ==================== */
 .reveal, .reveal-up, .reveal-left, .reveal-right {
